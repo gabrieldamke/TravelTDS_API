@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Viagem.Api.props" />
+</Project>
