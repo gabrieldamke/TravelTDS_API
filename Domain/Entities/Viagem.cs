@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Viagem
+    public class Viagem : IEntity
     {
-        public Destino Destino { get; set; }
-        public DateTime DataViagem { get; set; }
+        public int Id { get; set; }
+        public List<ParteViagem> PartesViagem { get; set; }
 
-        public Viagem(Destino destino, DateTime dataViagem)
+        public Viagem()
         {
-            Destino = destino;
-            DataViagem = dataViagem;
+          
         }
     }
 }

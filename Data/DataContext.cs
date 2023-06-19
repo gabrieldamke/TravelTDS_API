@@ -15,5 +15,19 @@ namespace Data
         }
         public DbSet<AtracaoTuristica> AtracoesTuristicas { get; set; }
 
+        public DbSet<Local> Locais { get; set; }
+
+        public DbSet<Restaurante> Restaurantes { get; set; }
+
+        public DbSet<Viagem> Viagens { get; set;    }
+
+        public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<ParteViagem> PartesViagem { get; set; }
+
+        public DbSet<Hotel> Hoteis { get; set; }
+
+        public DbSet<Destino> Destinos { get; set; }
+
     }
 }

@@ -15,13 +15,16 @@ namespace Domain.Entities
         public string Telefone { get; set; }
         public List<Viagem> Itinerario { get; set; }
 
-        public Usuario(string email, string senha, string nome, string telefone)
+        public string ImagemPerfilBase64 { get; set; } 
+
+        public Usuario(string email, string senha, string nome, string telefone, string imagemPerfilBase64)
         {
             Email = email;
             Senha = senha;
             Nome = nome;
             Telefone = telefone;
             Itinerario = new List<Viagem>();
+            ImagemPerfilBase64 = imagemPerfilBase64;
         }
     }
 }

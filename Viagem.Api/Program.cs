@@ -14,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddScoped<IAtracaoTuristicaService, AtracaoTuristicaService>();
+builder.Services.AddScoped<ILocalService, LocalService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data;
+﻿using Data;
 using Domain.Contracts;
 using Domain.Entities;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Services.Services
@@ -22,12 +16,12 @@ namespace Services.Services
 
         public async Task<List<AtracaoTuristica>> ObterAtracoesTuristicas()
         {
-            return await _context.AtracoesTuristicas.ToListAsync();
+            return await _context.AtracoesTuristicas.AsNoTracking().ToListAsync();
         }
 
         public async Task<AtracaoTuristica> ObterAtracoesTuristicasId(int id)
         {
-            return await _context.AtracoesTuristicas.FindAsync(id);
+            return await _context.AtracoesTuristicas.FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<AtracaoTuristica> AdicionarAtracaoTuristica(AtracaoTuristica atracaoTuristica)
@@ -42,6 +36,38 @@ namespace Services.Services
             {
                 throw;
             }
+        }
+
+        public async Task<AtracaoTuristica> AtualizarAtracaoTuristica(AtracaoTuristica atracaoTuristica)
+        {
+            var atracao = await _context.AtracoesTuristicas.FirstOrDefaultAsync(a => a.Id == atracaoTuristica.Id);
+            if (atracao == null)
+            {
+                throw new InvalidOperationException("Atração turistica não encontrada");
+            }
+           try
+            {
+                atracao.Descricao = atracaoTuristica.Descricao;
+                atracao.Nome = atracaoTuristica.Nome;
+
+                await _context.SaveChangesAsync();
+            } catch
+            {
+                throw;
+            }
+            return atracaoTuristica;
+        }
+
+        public async Task<AtracaoTuristica> DeletarAtracaoTuristica(int id)
+        {
+            var atracao = await _context.AtracoesTuristicas.FirstOrDefaultAsync(a => a.Id == id);
+            if (atracao == null)
+            {
+                throw new InvalidOperationException("Atração turistica não encontrada");
+            }
+            _context.AtracoesTuristicas.Remove(atracao);
+            await _context.SaveChangesAsync();
+            return atracao;
         }
     }
 }

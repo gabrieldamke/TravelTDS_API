@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Domain.Enums;
 namespace Domain.Entities
 {
     public class Restaurante : IEntity
@@ -11,14 +6,17 @@ namespace Domain.Entities
 
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string TipoCozinha { get; set; }
+        public Local Local { get; set; }
+        public TipoCozinha TipoCozinha { get; set; }
 
-        public Restaurante(string nome, string endereco, string tipoCozinha)
+        public string ImagemBase64 { get; set; }
+
+        public Restaurante(string nome, Local local, TipoCozinha tipoCozinha, string imagemBase64)
         {
             Nome = nome;
-            Endereco = endereco;
+            Local = local;
             TipoCozinha = tipoCozinha;
+            ImagemBase64 = imagemBase64;
         }
     }
 }

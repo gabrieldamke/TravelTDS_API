@@ -13,11 +13,14 @@ namespace Domain.Entities
         public string Endereco { get; set; }
         public int Classificacao { get; set; }
 
-        public Hotel(string nome, string endereco, int classificacao)
+        public string ImagemBase64 { get; set; }
+
+        public Hotel(string nome, string endereco, int classificacao, string imagemBase64)
         {
             Nome = nome;
             Endereco = endereco;
             Classificacao = classificacao;
+            ImagemBase64 = imagemBase64;
         }
     }
 }

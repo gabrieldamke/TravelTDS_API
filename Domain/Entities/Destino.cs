@@ -11,6 +11,8 @@ namespace Domain.Entities
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        
+        public Local local { get; set; }
         public List<AtracaoTuristica> Atracoes { get; set; }
         public List<Hotel> Hoteis { get; set; }
         public List<Restaurante> Restaurantes { get; set; }
@@ -22,6 +24,7 @@ namespace Domain.Entities
             Atracoes = new List<AtracaoTuristica>();
             Hoteis = new List<Hotel>();
             Restaurantes = new List<Restaurante>();
+            local = new Local();
         }
     }
 }
