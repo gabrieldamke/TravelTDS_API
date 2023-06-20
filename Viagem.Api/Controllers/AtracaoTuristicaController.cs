@@ -12,15 +12,15 @@ namespace Api.Controllers
         {
             _atracaoTuristicaService = atracaoTuristicaService;
         }
-        [Route("api/[controller]", Name = "GetAllAtracoes")]
+        [Route("api/[controller]")]
         [HttpGet]
-        [ProducesResponseType(typeof(Domain.Entities.AtracaoTuristica), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<Domain.Entities.AtracaoTuristica>), StatusCodes.Status200OK)]
         public async Task<ActionResult<List<Domain.Entities.AtracaoTuristica>>> Get()
         {
             return Ok(await _atracaoTuristicaService.ObterAtracoesTuristicas());
         }
 
-        [Route("api/[controller]/{id}", Name = "GetAtracaoById")]
+        [Route("api/[controller]/{id}")]
         [HttpGet]
         [ProducesResponseType(typeof(Domain.Entities.AtracaoTuristica), StatusCodes.Status200OK)]
         public async Task<ActionResult<Domain.Entities.AtracaoTuristica>> GetById(int id)
