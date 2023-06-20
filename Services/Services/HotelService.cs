@@ -52,6 +52,8 @@ namespace Services.Services
                 hotelExistente.Endereco = hotel.Endereco;
                 hotelExistente.Classificacao = hotel.Classificacao;
                 hotelExistente.ImagemBase64 = hotel.ImagemBase64;
+                hotelExistente.TiposQuarto = hotel.TiposQuarto;
+
 
                 await _context.SaveChangesAsync();
             }

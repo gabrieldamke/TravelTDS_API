@@ -29,5 +29,16 @@ namespace Data
 
         public DbSet<Destino> Destinos { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Restaurante>()
+                  .HasOne(r => r.Local) // Restaurante tem um Local
+                  .WithOne() // Local pertence a apenas um Restaurante
+                  .HasForeignKey<Restaurante>(r => r.LocalId); // Chave estrangeira para Local em Restaurante
+        }
     }
 }
+
+

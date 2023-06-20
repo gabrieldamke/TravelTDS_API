@@ -50,6 +50,10 @@ namespace Services.Services
             {
                 destinoExistente.Nome = destino.Nome;
                 destinoExistente.Descricao = destino.Descricao;
+                destinoExistente.Restaurantes = destino.Restaurantes;
+                destinoExistente.Atracoes = destino.Atracoes;
+                destinoExistente.local = destino.local;
+                destinoExistente.Hoteis = destino.Hoteis;
 
                 await _context.SaveChangesAsync();
             }

@@ -25,7 +25,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [ProducesResponseType(typeof(Usuario), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Usuario>> Get(int id)
+        public async Task<ActionResult<Usuario>> GetById(int id)
         {
             var usuario = await _usuarioService.ObterUsuarioPorId(id);
             if (usuario == null)

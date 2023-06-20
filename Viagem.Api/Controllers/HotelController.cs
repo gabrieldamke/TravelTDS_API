@@ -27,7 +27,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Hotel>> Get(int id)
+        public async Task<ActionResult<Hotel>> GetById(int id)
         {
             var hotel = await _hotelService.ObterHotelPorId(id);
             if (hotel == null)

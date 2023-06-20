@@ -4,6 +4,7 @@ using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230619204848_addEntities")]
+    partial class addEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,9 +47,6 @@ namespace Data.Migrations
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("ValorIngresso")
-                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -158,10 +158,10 @@ namespace Data.Migrations
                     b.Property<DateTime>("DataFinal")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DataInicial")
+                    b.Property<DateTime>("DataInical")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HotelId")
+                    b.Property<int>("DestinoId")
                         .HasColumnType("int");
 
                     b.Property<int>("IdViagem")
@@ -170,21 +170,11 @@ namespace Data.Migrations
                     b.Property<int?>("ViagemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("atracoesVisitadasId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("restaurantesVisitadosId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("HotelId");
+                    b.HasIndex("DestinoId");
 
                     b.HasIndex("ViagemId");
-
-                    b.HasIndex("atracoesVisitadasId");
-
-                    b.HasIndex("restaurantesVisitadosId");
 
                     b.ToTable("PartesViagem");
                 });
@@ -214,9 +204,6 @@ namespace Data.Migrations
                     b.Property<int>("TipoCozinha")
                         .HasColumnType("int");
 
-                    b.Property<float>("valorMedio")
-                        .HasColumnType("real");
-
                     b.HasKey("Id");
 
                     b.HasIndex("DestinoId");
@@ -225,31 +212,6 @@ namespace Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Restaurantes");
-                });
-
-            modelBuilder.Entity("Domain.Entities.TipoQuarto", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PrecoDiaria")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
-
-                    b.ToTable("TipoQuarto");
                 });
 
             modelBuilder.Entity("Domain.Entities.Usuario", b =>
@@ -330,9 +292,9 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.ParteViagem", b =>
                 {
-                    b.HasOne("Domain.Entities.Hotel", "Hotel")
+                    b.HasOne("Domain.Entities.Destino", "Destino")
                         .WithMany()
-                        .HasForeignKey("HotelId")
+                        .HasForeignKey("DestinoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -340,23 +302,7 @@ namespace Data.Migrations
                         .WithMany("PartesViagem")
                         .HasForeignKey("ViagemId");
 
-                    b.HasOne("Domain.Entities.AtracaoTuristica", "atracoesVisitadas")
-                        .WithMany()
-                        .HasForeignKey("atracoesVisitadasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Restaurante", "restaurantesVisitados")
-                        .WithMany()
-                        .HasForeignKey("restaurantesVisitadosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Hotel");
-
-                    b.Navigation("atracoesVisitadas");
-
-                    b.Navigation("restaurantesVisitados");
+                    b.Navigation("Destino");
                 });
 
             modelBuilder.Entity("Domain.Entities.Restaurante", b =>
@@ -374,17 +320,10 @@ namespace Data.Migrations
                     b.Navigation("Local");
                 });
 
-            modelBuilder.Entity("Domain.Entities.TipoQuarto", b =>
-                {
-                    b.HasOne("Domain.Entities.Hotel", null)
-                        .WithMany("TiposQuarto")
-                        .HasForeignKey("HotelId");
-                });
-
             modelBuilder.Entity("Domain.Entities.Viagem", b =>
                 {
                     b.HasOne("Domain.Entities.Usuario", null)
-                        .WithMany("Viagens")
+                        .WithMany("Itinerario")
                         .HasForeignKey("UsuarioId");
                 });
 
@@ -397,14 +336,9 @@ namespace Data.Migrations
                     b.Navigation("Restaurantes");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Hotel", b =>
-                {
-                    b.Navigation("TiposQuarto");
-                });
-
             modelBuilder.Entity("Domain.Entities.Usuario", b =>
                 {
-                    b.Navigation("Viagens");
+                    b.Navigation("Itinerario");
                 });
 
             modelBuilder.Entity("Domain.Entities.Viagem", b =>

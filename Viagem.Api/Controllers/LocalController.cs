@@ -25,7 +25,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [ProducesResponseType(typeof(Local), StatusCodes.Status200OK)]
-        public async Task<ActionResult<Local>> Get(int id)
+        public async Task<ActionResult<Local>> GetById(int id)
         {
             var local = await _localService.ObterLocalPorId(id);
             if (local == null)

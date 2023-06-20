@@ -51,8 +51,10 @@
                 try
                 {
                     parteViagemExistente.IdViagem = parteViagem.IdViagem;
-                    parteViagemExistente.Destino = parteViagem.Destino;
-                    parteViagemExistente.DataInical = parteViagem.DataInical;
+                    parteViagemExistente.restaurantesVisitados = parteViagem.restaurantesVisitados;
+                    parteViagemExistente.Hotel = parteViagem.Hotel;
+                    parteViagemExistente.atracoesVisitadas = parteViagem.atracoesVisitadas;
+                    parteViagemExistente.DataInicial = parteViagem.DataInicial;
                     parteViagemExistente.DataFinal = parteViagem.DataFinal;
 
                     await _context.SaveChangesAsync();

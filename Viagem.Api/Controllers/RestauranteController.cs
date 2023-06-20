@@ -30,7 +30,7 @@ namespace Api.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(Restaurante), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<Restaurante>> Get(int id)
+        public async Task<ActionResult<Restaurante>> GetById(int id)
         {
             var restaurante = await _restauranteService.ObterRestaurantePorId(id);
             if (restaurante == null)

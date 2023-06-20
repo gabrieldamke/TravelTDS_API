@@ -25,7 +25,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [ProducesResponseType(typeof(Destino), 200)]
-        public async Task<ActionResult<Destino>> Get(int id)
+        public async Task<ActionResult<Destino>> GetById(int id)
         {
             var destino = await _destinoService.ObterDestinoPorId(id);
             if (destino == null)

@@ -29,7 +29,7 @@ namespace Api.Controllers
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [ProducesResponseType(typeof(ParteViagem), StatusCodes.Status200OK)]
-        public async Task<ActionResult<ParteViagem>> Get(int id)
+        public async Task<ActionResult<ParteViagem>> GetById(int id)
         {
             var parteViagem = await _parteViagemService.ObterParteViagemPorId(id);
             if (parteViagem == null)

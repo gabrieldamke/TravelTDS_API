@@ -52,6 +52,7 @@ namespace Services.Services
                 restauranteExistente.Local = restaurante.Local;
                 restauranteExistente.TipoCozinha = restaurante.TipoCozinha;
                 restauranteExistente.ImagemBase64 = restaurante.ImagemBase64;
+                restauranteExistente.valorMedio = restaurante.valorMedio;
 
                 await _context.SaveChangesAsync();
             }

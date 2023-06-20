@@ -49,6 +49,7 @@ namespace Services.Services
             {
                 atracao.Descricao = atracaoTuristica.Descricao;
                 atracao.Nome = atracaoTuristica.Nome;
+                atracao.ValorIngresso = atracao.ValorIngresso;
 
                 await _context.SaveChangesAsync();
             } catch

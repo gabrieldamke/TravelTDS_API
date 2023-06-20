@@ -10,9 +10,13 @@ namespace Domain.Entities
     {
         public int Id { get; set; }
         public int IdViagem { get; set; }
-        public Destino Destino { get; set; }
+        public Hotel Hotel { get; set; }
 
-        public DateTime DataInical { get; set; }
+        public AtracaoTuristica atracoesVisitadas { get; set; }
+        
+        public Restaurante restaurantesVisitados { get; set; }
+
+        public DateTime DataInicial { get; set; }
 
         public DateTime DataFinal { get; set; }
 

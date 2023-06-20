@@ -13,7 +13,7 @@ namespace Domain.Entities
         public string Senha { get; set; }
         public string Nome { get; set; }
         public string Telefone { get; set; }
-        public List<Viagem> Itinerario { get; set; }
+        public List<Viagem> Viagens { get; set; }
 
         public string ImagemPerfilBase64 { get; set; } 
 
@@ -23,7 +23,7 @@ namespace Domain.Entities
             Senha = senha;
             Nome = nome;
             Telefone = telefone;
-            Itinerario = new List<Viagem>();
+            Viagens = new List<Viagem>();
             ImagemPerfilBase64 = imagemPerfilBase64;
         }
     }
