@@ -1,6 +1,10 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
+using Domain.Enums;
+using Services.Services;
 
 namespace Api.Controllers
 {
@@ -8,12 +12,14 @@ namespace Api.Controllers
     public class ViagemController : ControllerBase
     {
         private readonly IViagemService _viagemService;
+        private readonly IUsuarioService _usuarioService;
 
-        public ViagemController(IViagemService viagemService)
+        public ViagemController(IViagemService viagemService, IUsuarioService UsuarioService)
         {
             _viagemService = viagemService;
+            _usuarioService = UsuarioService;
         }
-
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(List<Viagem>), StatusCodes.Status200OK)]
@@ -22,6 +28,7 @@ namespace Api.Controllers
             return Ok(await _viagemService.ObterViagens());
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         [Route("api/[controller]/{id}")]
         [ProducesResponseType(typeof(Viagem), StatusCodes.Status200OK)]
@@ -33,6 +40,40 @@ namespace Api.Controllers
             return Ok(viagem);
         }
 
+        [HttpGet]
+        [Route("api/[controller]/viagens")]
+        [ProducesResponseType(typeof(List<Viagem>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Viagem>>> GetViagensDoUsuarioAutenticado()
+        {
+            var usuarioEmail = User.Identity?.Name;
+
+            var usuario = await _usuarioService.ObterUsuarioPorEmail(usuarioEmail);
+
+            if (usuario == null)
+                return NotFound("Usuário não encontrado:" + usuarioEmail);
+
+            var viagensDoUsuario = usuario.Viagens;
+
+            return Ok(viagensDoUsuario);
+        }
+
+        [HttpGet]
+        [Route("api/[controller]/viagensUsuario")]
+        [ProducesResponseType(typeof(List<Viagem>), StatusCodes.Status200OK)]
+        public async Task<ActionResult<List<Viagem>>> GetViagensPorUsuario(string email)
+        {
+
+            var usuario = await _usuarioService.ObterUsuarioPorEmail(email);
+
+            if (usuario == null)
+                return NotFound("Usuário não encontrado:" + email);
+
+            var viagensDoUsuario = usuario.Viagens;
+
+            return Ok(viagensDoUsuario);
+        }
+
+        [Authorize(Roles = "Administrador, Usuario")]
         [HttpPost]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(Viagem), StatusCodes.Status200OK)]
@@ -42,6 +83,7 @@ namespace Api.Controllers
             return Ok(viagemAdicionada);
         }
 
+        [Authorize(Roles = "Administrador, Usuario")]
         [HttpPut]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(Viagem), StatusCodes.Status200OK)]
@@ -64,6 +106,7 @@ namespace Api.Controllers
 
         [HttpDelete]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador, Usuario")]
         [ProducesResponseType(typeof(Viagem), StatusCodes.Status200OK)]
         public async Task<ActionResult<Viagem>> Delete(int id)
         {

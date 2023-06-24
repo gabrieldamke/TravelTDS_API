@@ -1,9 +1,11 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
@@ -42,6 +44,7 @@ namespace Api.Controllers
 
         [Route("api/[controller]")]
         [HttpPost]
+        [Authorize(Roles = "Administrador, Usuario")]
         [ProducesResponseType(typeof(Restaurante), StatusCodes.Status200OK)]
         public async Task<ActionResult<Restaurante>> Post(Restaurante restaurante)
         {
@@ -51,6 +54,7 @@ namespace Api.Controllers
 
         [Route("api/[controller]")]
         [HttpPut]
+        [Authorize(Roles = "Administrador, Usuario")]
         [ProducesResponseType(typeof(Restaurante), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Restaurante>> Put(Restaurante restaurante)
@@ -72,6 +76,7 @@ namespace Api.Controllers
 
         [Route("api/[controller]/{id}")]
         [HttpDelete]
+        [Authorize(Roles = "Administrador, Usuario")]
         [ProducesResponseType(typeof(Restaurante), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Restaurante>> Delete(int id)

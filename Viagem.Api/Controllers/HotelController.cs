@@ -1,6 +1,8 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 
 namespace Api.Controllers
@@ -37,6 +39,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
         public async Task<ActionResult<Hotel>> Post(Hotel hotel)
         {
@@ -46,6 +49,7 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
         public async Task<ActionResult<Hotel>> Put(Hotel hotel)
         {
@@ -66,6 +70,7 @@ namespace Api.Controllers
 
         [HttpDelete]
         [Route("api/[controller]/{id}")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Hotel), StatusCodes.Status200OK)]
         public async Task<ActionResult<Hotel>> Delete(int id)
         {

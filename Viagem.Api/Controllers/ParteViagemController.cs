@@ -1,9 +1,11 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Threading.Tasks;
 
 namespace Api.Controllers
@@ -38,6 +40,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador, Usuario")]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(ParteViagem), StatusCodes.Status200OK)]
         public async Task<ActionResult<ParteViagem>> Post(ParteViagem parteViagem)
@@ -47,6 +50,7 @@ namespace Api.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Administrador, Usuario")]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(ParteViagem), StatusCodes.Status200OK)]
         public async Task<ActionResult<ParteViagem>> Put(ParteViagem parteViagem)
@@ -67,6 +71,7 @@ namespace Api.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = "Administrador, Usuario")]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(ParteViagem), StatusCodes.Status200OK)]
         public async Task<ActionResult<ParteViagem>> Delete(int id)

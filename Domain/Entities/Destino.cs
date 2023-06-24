@@ -13,6 +13,8 @@ namespace Domain.Entities
         public string Descricao { get; set; }
         
         public Local local { get; set; }
+        public int LocalId { get; set; }
+
         public List<AtracaoTuristica> Atracoes { get; set; }
         public List<Hotel> Hoteis { get; set; }
         public List<Restaurante> Restaurantes { get; set; }

@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Viagem.Api\Api.cspro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{1381A291-B17C-4917-94CB-9016C043FA36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{313246EE-C8FA-4D3A-B82F-5252BCA99832}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{313246EE-C8FA-4D3A-B82F-5252BCA99832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{A141295C-D9D6-49B4-8F8A-00FA617D31AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{A141295C-D9D6-49B4-8F8A-00FA617D31AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{351811B4-8E53-4E08-8232-6B30F31A1F4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A141295C-D9D6-49B4-8F8A-00FA617D31AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A141295C-D9D6-49B4-8F8A-00FA617D31AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A141295C-D9D6-49B4-8F8A-00FA617D31AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{351811B4-8E53-4E08-8232-6B30F31A1F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351811B4-8E53-4E08-8232-6B30F31A1F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351811B4-8E53-4E08-8232-6B30F31A1F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351811B4-8E53-4E08-8232-6B30F31A1F4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

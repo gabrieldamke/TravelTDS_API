@@ -8,15 +8,26 @@
     ".NETCoreApp,Version=v6.0": {
       "Api/1.0.0": {
         "dependencies": {
+          "AspNetCore.Authentication.Basic": "7.0.0",
           "Data": "1.0.0",
           "Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore.Design": "7.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.5",
+          "Security": "1.0.0",
           "Services": "1.0.0",
-          "Swashbuckle.AspNetCore": "6.2.3"
+          "Swashbuckle.AspNetCore": "6.2.3",
+          "idunno.Authentication.Basic": "2.3.1"
         },
         "runtime": {
           "Api.dll": {}
+        }
+      },
+      "AspNetCore.Authentication.Basic/7.0.0": {
+        "runtime": {
+          "lib/net6.0/AspNetCore.Authentication.Basic.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
+          }
         }
       },
       "Azure.Core/1.24.0": {
@@ -58,6 +69,14 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "idunno.Authentication.Basic/2.3.1": {
+        "runtime": {
+          "lib/net6.0/idunno.Authentication.Basic.dll": {
+            "assemblyVersion": "2.3.0.0",
+            "fileVersion": "2.3.1.5"
           }
         }
       },
@@ -896,6 +915,16 @@
           "Domain.dll": {}
         }
       },
+      "Security/1.0.0": {
+        "dependencies": {
+          "AspNetCore.Authentication.Basic": "7.0.0",
+          "Domain": "1.0.0",
+          "Services": "1.0.0"
+        },
+        "runtime": {
+          "Security.dll": {}
+        }
+      },
       "Services/1.0.0": {
         "dependencies": {
           "Data": "1.0.0",
@@ -913,6 +942,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AspNetCore.Authentication.Basic/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1d+8abyKKV7htirBPcHcEZbg/FvEBOP2wpquyhoZng9xR620A2i2gI177BETCIAaeAfCG9s8NPLtj++WI5YSlg==",
+      "path": "aspnetcore.authentication.basic/7.0.0",
+      "hashPath": "aspnetcore.authentication.basic.7.0.0.nupkg.sha512"
     },
     "Azure.Core/1.24.0": {
       "type": "package",
@@ -934,6 +970,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "idunno.Authentication.Basic/2.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-99EoiqTy6hYDvHehG1JLlprkB08ioR/hsnCpPhvDJJeZ0JOKNpoL+7C2jLC1r5vo0G5kerOPqdhdSHF3Ss2blw==",
+      "path": "idunno.authentication.basic/2.3.1",
+      "hashPath": "idunno.authentication.basic.2.3.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
       "type": "package",
@@ -1571,6 +1614,11 @@
       "sha512": ""
     },
     "Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Security/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

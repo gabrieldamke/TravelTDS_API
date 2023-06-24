@@ -16,12 +16,12 @@ namespace Services.Services
 
         public async Task<List<Restaurante>> ObterRestaurantes()
         {
-            return await _context.Restaurantes.AsNoTracking().ToListAsync();
+            return await _context.Restaurantes.Include(r => r.Local).Include(r => r.TipoCozinha).AsNoTracking().ToListAsync();
         }
 
         public async Task<Restaurante> ObterRestaurantePorId(int id)
         {
-            return await _context.Restaurantes.FirstOrDefaultAsync(r => r.Id == id);
+            return await _context.Restaurantes.Include(r => r.Local).Include(r => r.TipoCozinha).FirstOrDefaultAsync(r => r.Id == id);
         }
 
         public async Task<Restaurante> AdicionarRestaurante(Restaurante restaurante)

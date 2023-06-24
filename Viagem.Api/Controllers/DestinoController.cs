@@ -1,6 +1,8 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Api.Controllers
 {
@@ -35,6 +37,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Destino), 200)]
         public async Task<ActionResult<Destino>> Post(Destino destino)
         {
@@ -44,6 +47,7 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Destino), 200)]
         public async Task<ActionResult<Destino>> Put(Destino destino)
         {
@@ -62,6 +66,7 @@ namespace Api.Controllers
 
         [HttpDelete]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Destino), 200)]
         public async Task<ActionResult<Destino>> Delete(int id)
         {

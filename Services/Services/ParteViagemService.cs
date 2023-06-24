@@ -18,14 +18,31 @@
 
             public async Task<List<ParteViagem>> ObterPartesViagem()
             {
-                return await _context.PartesViagem.AsNoTracking().ToListAsync();
+                return await _context.PartesViagem
+                    .Include(p => p.Viagem)
+                    .Include(p => p.Hotel)
+                    .Include(p => p.atracoesVisitadas)
+                        .ThenInclude(a => a.Local)
+                    .Include(p => p.restaurantesVisitados)
+                        .ThenInclude(r => r.Local)
+                    .Include(p => p.Despesas)
+                    .AsNoTracking()
+                    .ToListAsync();
             }
 
             public async Task<ParteViagem> ObterParteViagemPorId(int id)
             {
-                return await _context.PartesViagem.FirstOrDefaultAsync(p => p.Id == id);
+                return await _context.PartesViagem
+                    .Include(p => p.Viagem)
+                    .Include(p => p.Hotel)
+                    .Include(p => p.atracoesVisitadas)
+                        .ThenInclude(a => a.Local)
+                    .Include(p => p.restaurantesVisitados)
+                        .ThenInclude(r => r.Local)
+                    .Include(p => p.Despesas)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(p => p.Id == id);
             }
-
             public async Task<ParteViagem> AdicionarParteViagem(ParteViagem parteViagem)
             {
                 try
@@ -56,6 +73,7 @@
                     parteViagemExistente.atracoesVisitadas = parteViagem.atracoesVisitadas;
                     parteViagemExistente.DataInicial = parteViagem.DataInicial;
                     parteViagemExistente.DataFinal = parteViagem.DataFinal;
+                    parteViagemExistente.Despesas = parteViagem.Despesas;
 
                     await _context.SaveChangesAsync();
                 }

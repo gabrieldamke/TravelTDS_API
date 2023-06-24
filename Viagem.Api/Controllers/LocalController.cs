@@ -1,5 +1,6 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
@@ -13,7 +14,7 @@ namespace Api.Controllers
         {
             _localService = localService;
         }
-
+        [Authorize]
         [HttpGet]
         [Route("api/[controller]")]
         [ProducesResponseType(typeof(List<Local>), StatusCodes.Status200OK)]
@@ -35,6 +36,7 @@ namespace Api.Controllers
 
         [HttpPost]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Local), StatusCodes.Status200OK)]
         public async Task<ActionResult<Local>> Post(Local local)
         {
@@ -44,6 +46,7 @@ namespace Api.Controllers
 
         [HttpPut]
         [Route("api/[controller]")]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Local), StatusCodes.Status200OK)]
         public async Task<ActionResult<Local>> Put(Local local)
         {

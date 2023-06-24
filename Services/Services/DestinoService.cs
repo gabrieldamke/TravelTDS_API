@@ -16,14 +16,35 @@ namespace Services.Services
 
         public async Task<List<Destino>> ObterDestinos()
         {
-            return await _context.Destinos.AsNoTracking().ToListAsync();
+            return await _context.Destinos
+           .Include(d => d.local)
+                .Include(d => d.Atracoes)
+                        .ThenInclude(h => h.Local)
+                .Include(d => d.Hoteis)
+                    .ThenInclude(h => h.Local)
+                .Include(d => d.Restaurantes)
+                    .ThenInclude(r => r.Local)
+                 .Include(d => d.Restaurantes)
+                    .ThenInclude(r => r.TipoCozinha)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Destino> ObterDestinoPorId(int id)
         {
-            return await _context.Destinos.FirstOrDefaultAsync(d => d.Id == id);
+            return await _context.Destinos
+                .Include(d => d.local)
+                .Include(d => d.Atracoes)
+                        .ThenInclude(h => h.Local)
+                .Include(d => d.Hoteis)
+                    .ThenInclude(h => h.Local)
+                .Include(d => d.Restaurantes)
+                    .ThenInclude(r => r.Local)
+                 .Include(d => d.Restaurantes)
+                    .ThenInclude(r => r.TipoCozinha)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(d => d.Id == id);
         }
-
         public async Task<Destino> AdicionarDestino(Destino destino)
         {
             try

@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "7MLnrmilS8dzy3tNvKniiqPtEfZIEMcZcaclIbAfPRhia1dWCbOCJJ97X197cCmh690Ms70fmDke28LPXiSy1Q==",
+  "dgSpecHash": "rCx+2jUZTuh7QlPEh+iwy2bQlX5QZKKDVGTCDpgMCAYZlVQSg+ZQjXTY1mYM0Dp+2o8aTJzSDNNsy3RndmuI2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\gabri\\OneDrive\\Área de Trabalho\\Meus Arquivos\\UTFPR\\5ºPeríodo CC\\Tecnologia em Desenvolvimento de Sistemas\\ProjetoFinal\\Proejto.Viagem.Server\\Viagem.Api\\Viagem.Api\\Api.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gabri\\.nuget\\packages\\aspnetcore.authentication.basic\\7.0.0\\aspnetcore.authentication.basic.7.0.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\gabri\\.nuget\\packages\\idunno.authentication.basic\\2.3.1\\idunno.authentication.basic.2.3.1.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

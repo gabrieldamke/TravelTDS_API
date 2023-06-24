@@ -8,8 +8,10 @@ namespace Domain.Entities
         public string Nome { get; set; }
         public Local Local { get; set; }
 
-        public int LocalId { get; set; } 
+        public int LocalId { get; set; }
         public TipoCozinha TipoCozinha { get; set; }
+
+        public int TipoCozinhaId { get; set; }
 
         public string ImagemBase64 { get; set; }
 

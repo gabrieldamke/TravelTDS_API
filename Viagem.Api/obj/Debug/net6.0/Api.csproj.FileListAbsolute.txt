@@ -91,3 +91,7 @@ C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tec
 C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\obj\Debug\net6.0\Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\bin\Debug\net6.0\Services.dll
 C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\bin\Debug\net6.0\Services.pdb
+C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\bin\Debug\net6.0\AspNetCore.Authentication.Basic.dll
+C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\bin\Debug\net6.0\idunno.Authentication.Basic.dll
+C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\bin\Debug\net6.0\Security.dll
+C:\Users\gabri\OneDrive\Área de Trabalho\Meus Arquivos\UTFPR\5ºPeríodo CC\Tecnologia em Desenvolvimento de Sistemas\ProjetoFinal\Proejto.Viagem.Server\Viagem.Api\Viagem.Api\bin\Debug\net6.0\Security.pdb

@@ -49,6 +49,7 @@ namespace Services.Services
             try
             {
                 viagemExistente.PartesViagem = viagem.PartesViagem;
+                viagemExistente.Orcamento = viagem.Orcamento;
 
                 await _context.SaveChangesAsync();
             }

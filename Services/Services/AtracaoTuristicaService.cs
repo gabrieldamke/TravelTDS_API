@@ -16,12 +16,12 @@ namespace Services.Services
 
         public async Task<List<AtracaoTuristica>> ObterAtracoesTuristicas()
         {
-            return await _context.AtracoesTuristicas.AsNoTracking().ToListAsync();
+            return await _context.AtracoesTuristicas.Include(r => r.Local).AsNoTracking().ToListAsync();
         }
 
         public async Task<AtracaoTuristica> ObterAtracoesTuristicasId(int id)
         {
-            return await _context.AtracoesTuristicas.FirstOrDefaultAsync(a => a.Id == id);
+            return await _context.AtracoesTuristicas.Include(r => r.Local).FirstOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<AtracaoTuristica> AdicionarAtracaoTuristica(AtracaoTuristica atracaoTuristica)
@@ -49,7 +49,8 @@ namespace Services.Services
             {
                 atracao.Descricao = atracaoTuristica.Descricao;
                 atracao.Nome = atracaoTuristica.Nome;
-                atracao.ValorIngresso = atracao.ValorIngresso;
+                atracao.ValorIngresso = atracaoTuristica.ValorIngresso;
+                atracao.Local = atracaoTuristica.Local;
 
                 await _context.SaveChangesAsync();
             } catch

@@ -22,6 +22,66 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AtracaoTuristicaDestino", b =>
+                {
+                    b.Property<int>("AtracoesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DestinoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AtracoesId", "DestinoId");
+
+                    b.HasIndex("DestinoId");
+
+                    b.ToTable("Destino_AtracaoTuristica", (string)null);
+                });
+
+            modelBuilder.Entity("AtracaoTuristicaParteViagem", b =>
+                {
+                    b.Property<int>("ParteViagemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("atracoesVisitadasId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ParteViagemId", "atracoesVisitadasId");
+
+                    b.HasIndex("atracoesVisitadasId");
+
+                    b.ToTable("ParteViagem_AtracaoTuristica", (string)null);
+                });
+
+            modelBuilder.Entity("DestinoHotel", b =>
+                {
+                    b.Property<int>("DestinoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoteisId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DestinoId", "HoteisId");
+
+                    b.HasIndex("HoteisId");
+
+                    b.ToTable("Destino_Hotel", (string)null);
+                });
+
+            modelBuilder.Entity("DestinoRestaurante", b =>
+                {
+                    b.Property<int>("DestinoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RestaurantesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("DestinoId", "RestaurantesId");
+
+                    b.HasIndex("RestaurantesId");
+
+                    b.ToTable("Destino_Restaurante", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.AtracaoTuristica", b =>
                 {
                     b.Property<int>("Id")
@@ -34,12 +94,13 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DestinoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImagemBase64")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("LocalId")
+                        .IsRequired()
+                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -50,9 +111,37 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DestinoId");
+                    b.HasIndex("LocalId");
 
                     b.ToTable("AtracoesTuristicas");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Despesas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("CustosAtracoesTuristicas")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CustosExtras")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CustosHospedagem")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CustosRestaurantes")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CustosTransporte")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Despesas");
                 });
 
             modelBuilder.Entity("Domain.Entities.Destino", b =>
@@ -67,16 +156,16 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("LocalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("localId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("localId");
+                    b.HasIndex("LocalId");
 
                     b.ToTable("Destinos");
                 });
@@ -92,16 +181,12 @@ namespace Data.Migrations
                     b.Property<int>("Classificacao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("DestinoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Endereco")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ImagemBase64")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LocalId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -109,7 +194,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DestinoId");
+                    b.HasIndex("LocalId");
 
                     b.ToTable("Hoteis");
                 });
@@ -131,6 +216,10 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagemLocal")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -161,30 +250,24 @@ namespace Data.Migrations
                     b.Property<DateTime>("DataInicial")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("DespesasId")
+                        .HasColumnType("int");
+
                     b.Property<int>("HotelId")
                         .HasColumnType("int");
 
                     b.Property<int>("IdViagem")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ViagemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("atracoesVisitadasId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("restaurantesVisitadosId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("DespesasId")
+                        .IsUnique()
+                        .HasFilter("[DespesasId] IS NOT NULL");
 
                     b.HasIndex("HotelId");
 
-                    b.HasIndex("ViagemId");
-
-                    b.HasIndex("atracoesVisitadasId");
-
-                    b.HasIndex("restaurantesVisitadosId");
+                    b.HasIndex("IdViagem");
 
                     b.ToTable("PartesViagem");
                 });
@@ -197,9 +280,6 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("DestinoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ImagemBase64")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -211,7 +291,7 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TipoCozinha")
+                    b.Property<int>("TipoCozinhaId")
                         .HasColumnType("int");
 
                     b.Property<float>("valorMedio")
@@ -219,12 +299,28 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DestinoId");
+                    b.HasIndex("LocalId");
 
-                    b.HasIndex("LocalId")
-                        .IsUnique();
+                    b.HasIndex("TipoCozinhaId");
 
                     b.ToTable("Restaurantes");
+                });
+
+            modelBuilder.Entity("Domain.Entities.TipoCozinha", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoCozinha");
                 });
 
             modelBuilder.Entity("Domain.Entities.TipoQuarto", b =>
@@ -235,9 +331,6 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("HotelId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -246,8 +339,6 @@ namespace Data.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
 
                     b.ToTable("TipoQuarto");
                 });
@@ -280,6 +371,10 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TipoPermissao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
@@ -293,7 +388,14 @@ namespace Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("UsuarioId")
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Orcamento")
+                        .HasColumnType("real");
+
+                    b.Property<int>("UsuarioId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -303,19 +405,113 @@ namespace Data.Migrations
                     b.ToTable("Viagens");
                 });
 
-            modelBuilder.Entity("Domain.Entities.AtracaoTuristica", b =>
+            modelBuilder.Entity("HotelTipoQuarto", b =>
+                {
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TiposQuartoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HotelId", "TiposQuartoId");
+
+                    b.HasIndex("TiposQuartoId");
+
+                    b.ToTable("Hotel_TipoQuarto", (string)null);
+                });
+
+            modelBuilder.Entity("ParteViagemRestaurante", b =>
+                {
+                    b.Property<int>("ParteViagemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("restaurantesVisitadosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ParteViagemId", "restaurantesVisitadosId");
+
+                    b.HasIndex("restaurantesVisitadosId");
+
+                    b.ToTable("ParteViagem_Restaurante", (string)null);
+                });
+
+            modelBuilder.Entity("AtracaoTuristicaDestino", b =>
+                {
+                    b.HasOne("Domain.Entities.AtracaoTuristica", null)
+                        .WithMany()
+                        .HasForeignKey("AtracoesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Destino", null)
+                        .WithMany()
+                        .HasForeignKey("DestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AtracaoTuristicaParteViagem", b =>
+                {
+                    b.HasOne("Domain.Entities.ParteViagem", null)
+                        .WithMany()
+                        .HasForeignKey("ParteViagemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.AtracaoTuristica", null)
+                        .WithMany()
+                        .HasForeignKey("atracoesVisitadasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DestinoHotel", b =>
                 {
                     b.HasOne("Domain.Entities.Destino", null)
-                        .WithMany("Atracoes")
-                        .HasForeignKey("DestinoId");
+                        .WithMany()
+                        .HasForeignKey("DestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Hotel", null)
+                        .WithMany()
+                        .HasForeignKey("HoteisId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DestinoRestaurante", b =>
+                {
+                    b.HasOne("Domain.Entities.Destino", null)
+                        .WithMany()
+                        .HasForeignKey("DestinoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Restaurante", null)
+                        .WithMany()
+                        .HasForeignKey("RestaurantesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.AtracaoTuristica", b =>
+                {
+                    b.HasOne("Domain.Entities.Local", "Local")
+                        .WithMany()
+                        .HasForeignKey("LocalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Local");
                 });
 
             modelBuilder.Entity("Domain.Entities.Destino", b =>
                 {
                     b.HasOne("Domain.Entities.Local", "local")
                         .WithMany()
-                        .HasForeignKey("localId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("LocalId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("local");
@@ -323,83 +519,99 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.Entities.Hotel", b =>
                 {
-                    b.HasOne("Domain.Entities.Destino", null)
-                        .WithMany("Hoteis")
-                        .HasForeignKey("DestinoId");
+                    b.HasOne("Domain.Entities.Local", "Local")
+                        .WithMany()
+                        .HasForeignKey("LocalId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Local");
                 });
 
             modelBuilder.Entity("Domain.Entities.ParteViagem", b =>
                 {
+                    b.HasOne("Domain.Entities.Despesas", "Despesas")
+                        .WithOne()
+                        .HasForeignKey("Domain.Entities.ParteViagem", "DespesasId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("Domain.Entities.Hotel", "Hotel")
                         .WithMany()
                         .HasForeignKey("HotelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Viagem", null)
+                    b.HasOne("Domain.Entities.Viagem", "Viagem")
                         .WithMany("PartesViagem")
-                        .HasForeignKey("ViagemId");
-
-                    b.HasOne("Domain.Entities.AtracaoTuristica", "atracoesVisitadas")
-                        .WithMany()
-                        .HasForeignKey("atracoesVisitadasId")
+                        .HasForeignKey("IdViagem")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Entities.Restaurante", "restaurantesVisitados")
-                        .WithMany()
-                        .HasForeignKey("restaurantesVisitadosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Despesas");
 
                     b.Navigation("Hotel");
 
-                    b.Navigation("atracoesVisitadas");
-
-                    b.Navigation("restaurantesVisitados");
+                    b.Navigation("Viagem");
                 });
 
             modelBuilder.Entity("Domain.Entities.Restaurante", b =>
                 {
-                    b.HasOne("Domain.Entities.Destino", null)
-                        .WithMany("Restaurantes")
-                        .HasForeignKey("DestinoId");
-
                     b.HasOne("Domain.Entities.Local", "Local")
-                        .WithOne()
-                        .HasForeignKey("Domain.Entities.Restaurante", "LocalId")
+                        .WithMany()
+                        .HasForeignKey("LocalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Local");
-                });
+                    b.HasOne("Domain.Entities.TipoCozinha", "TipoCozinha")
+                        .WithMany()
+                        .HasForeignKey("TipoCozinhaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
-            modelBuilder.Entity("Domain.Entities.TipoQuarto", b =>
-                {
-                    b.HasOne("Domain.Entities.Hotel", null)
-                        .WithMany("TiposQuarto")
-                        .HasForeignKey("HotelId");
+                    b.Navigation("Local");
+
+                    b.Navigation("TipoCozinha");
                 });
 
             modelBuilder.Entity("Domain.Entities.Viagem", b =>
                 {
-                    b.HasOne("Domain.Entities.Usuario", null)
+                    b.HasOne("Domain.Entities.Usuario", "Usuario")
                         .WithMany("Viagens")
-                        .HasForeignKey("UsuarioId");
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("Domain.Entities.Destino", b =>
+            modelBuilder.Entity("HotelTipoQuarto", b =>
                 {
-                    b.Navigation("Atracoes");
+                    b.HasOne("Domain.Entities.Hotel", null)
+                        .WithMany()
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Hoteis");
-
-                    b.Navigation("Restaurantes");
+                    b.HasOne("Domain.Entities.TipoQuarto", null)
+                        .WithMany()
+                        .HasForeignKey("TiposQuartoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.Entities.Hotel", b =>
+            modelBuilder.Entity("ParteViagemRestaurante", b =>
                 {
-                    b.Navigation("TiposQuarto");
+                    b.HasOne("Domain.Entities.ParteViagem", null)
+                        .WithMany()
+                        .HasForeignKey("ParteViagemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Entities.Restaurante", null)
+                        .WithMany()
+                        .HasForeignKey("restaurantesVisitadosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Usuario", b =>

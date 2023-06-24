@@ -14,6 +14,7 @@ namespace Domain.Entities
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Pais { get; set; }
+        public string ImagemLocal { get; set; }
 
         public Local(string nome, string endereco, string cidade, string estado, string pais)
         {

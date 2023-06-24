@@ -16,12 +16,12 @@ namespace Services.Services
 
         public async Task<List<Hotel>> ObterHoteis()
         {
-            return await _context.Hoteis.AsNoTracking().ToListAsync();
+            return await _context.Hoteis.AsNoTracking().Include(r => r.Local).Include(r => r.TiposQuarto).ToListAsync();
         }
 
         public async Task<Hotel> ObterHotelPorId(int id)
         {
-            return await _context.Hoteis.FirstOrDefaultAsync(h => h.Id == id);
+            return await _context.Hoteis.Include(r => r.Local).Include(r => r.TiposQuarto).FirstOrDefaultAsync(h => h.Id == id);
         }
 
         public async Task<Hotel> AdicionarHotel(Hotel hotel)
@@ -49,7 +49,7 @@ namespace Services.Services
             try
             {
                 hotelExistente.Nome = hotel.Nome;
-                hotelExistente.Endereco = hotel.Endereco;
+                hotelExistente.Local = hotel.Local;
                 hotelExistente.Classificacao = hotel.Classificacao;
                 hotelExistente.ImagemBase64 = hotel.ImagemBase64;
                 hotelExistente.TiposQuarto = hotel.TiposQuarto;

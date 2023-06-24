@@ -1,6 +1,8 @@
 ﻿using Domain.Contracts;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace Api.Controllers
 {
@@ -12,6 +14,7 @@ namespace Api.Controllers
         {
             _atracaoTuristicaService = atracaoTuristicaService;
         }
+        
         [Route("api/[controller]")]
         [HttpGet]
         [ProducesResponseType(typeof(List<Domain.Entities.AtracaoTuristica>), StatusCodes.Status200OK)]
@@ -19,6 +22,7 @@ namespace Api.Controllers
         {
             return Ok(await _atracaoTuristicaService.ObterAtracoesTuristicas());
         }
+
 
         [Route("api/[controller]/{id}")]
         [HttpGet]
@@ -33,6 +37,7 @@ namespace Api.Controllers
 
         [Route("api/[controller]")]
         [HttpPost]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Domain.Entities.AtracaoTuristica), StatusCodes.Status200OK)]
         public async Task<ActionResult<Domain.Entities.AtracaoTuristica>> Post(AtracaoTuristica atracaoTuristica)
         {
@@ -42,6 +47,7 @@ namespace Api.Controllers
 
         [Route("api/[controller]")]
         [HttpPut]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Domain.Entities.AtracaoTuristica), StatusCodes.Status200OK)]
         public async Task<ActionResult<Domain.Entities.AtracaoTuristica>> Put(AtracaoTuristica atracaoTuristica)
         {
@@ -62,6 +68,7 @@ namespace Api.Controllers
 
         [Route("api/[controller]")]
         [HttpDelete]
+        [Authorize(Roles = "Administrador")]
         [ProducesResponseType(typeof(Domain.Entities.AtracaoTuristica), StatusCodes.Status200OK)]
 
         public async Task<ActionResult<Domain.Entities.AtracaoTuristica>> Delete(int id)
